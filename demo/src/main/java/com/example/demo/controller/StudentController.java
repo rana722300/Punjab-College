@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
 
     @GetMapping("/name")
-    public String studentName(){
+    public String getStudentName(){
         return "Danish";
     }
+
+    @GetMapping("/father-name")
+    public String getFatherName(){return "Abdul Hafeez";}
 }
