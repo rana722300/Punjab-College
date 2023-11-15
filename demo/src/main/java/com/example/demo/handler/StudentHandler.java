@@ -29,4 +29,18 @@ public class StudentHandler {
         }
         return studentModels;
     }
+
+    public StudentModel findStudent(String name) {
+        Student student = studentService.findStudent(name);
+        return studentTransformer.toModel(student);
+    }
+
+    public List<StudentModel> getStudentByFees(double fees) {
+        List<Student> students = studentService.getStudentByFees(fees);
+        List<StudentModel> studentModels = new ArrayList<>();
+        for(Student student : students){
+            studentModels.add(studentTransformer.toModel(student));
+        }
+        return studentModels;
+    }
 }
