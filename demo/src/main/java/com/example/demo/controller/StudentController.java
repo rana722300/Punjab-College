@@ -1,18 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Student;
 import com.example.demo.handler.StudentHandler;
 import com.example.demo.model.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/student")
 public class StudentController {
     private StudentHandler studentHandler;
 
@@ -34,6 +32,11 @@ public class StudentController {
     @GetMapping("/fees/{fees}")
     public List<StudentModel> getStudentByFees(@PathVariable double fees){
         return studentHandler.getStudentByFees(fees);
+    }
 
+    @PostMapping("/create")
+    public String createStudent(@RequestBody Student student){
+        return "Student Created Successfully. \nStudent Fees : " + student.getFees() + "\nStudent Name : " + student.getHuman().getName();
+//        return student;
     }
 }
