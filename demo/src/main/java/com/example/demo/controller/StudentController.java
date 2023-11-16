@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Address;
 import com.example.demo.domain.Student;
 import com.example.demo.handler.StudentHandler;
 import com.example.demo.model.StudentModel;
@@ -37,6 +38,11 @@ public class StudentController {
     @PostMapping("/create")
     public String createStudent(@RequestBody Student student){
         return "Student Created Successfully. \nStudent Fees : " + student.getFees() + "\nStudent Name : " + student.getHuman().getName();
-//        return student;
+        //return student;
     }
+    @GetMapping("/example")
+    public String cityStudent(@RequestParam String city){
+        return "City of Student is : \nStudent Address : " + city;
+    }
+
 }
