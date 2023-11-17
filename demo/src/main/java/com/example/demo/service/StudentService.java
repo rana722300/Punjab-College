@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StudentService {
@@ -15,23 +16,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getAllStudents() {
-        return studentRepository.getAllStudents();
-    }
-
-    public Student findStudent(String name) {
-        return studentRepository.findStudent(name);
-    }
-
-    public List<Student> getStudentByFees(double fees) {
-        List<Student> students = studentRepository.getAllStudents();
-        List<Student> filterStudents = new ArrayList<>();
-        for (Student student : students){
-            if (student.getFees() >= fees){
-                filterStudents.add(student);
-
-            }
-        }
-        return filterStudents;
+    public void createStudent(Student student) {
+        student.setId(UUID.randomUUID());
+        studentRepository.save(student);
     }
 }
