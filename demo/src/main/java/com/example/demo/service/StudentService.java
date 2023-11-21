@@ -20,4 +20,8 @@ public class StudentService {
         student.setId(UUID.randomUUID());
         studentRepository.save(student);
     }
+
+    public List<Student> getStudentByName(String name) {
+        return studentRepository.getAllByHuman_Name(name);
+    }
 }
