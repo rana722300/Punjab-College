@@ -26,10 +26,29 @@ public class StudentHandler {
 
     public List<StudentModel> getStudentByName(String name) {
         List<Student> students = studentService.getStudentByName(name);
-        List<StudentModel> studentModels = new ArrayList<>();
-        for(Student student : students){
+        return getStudentModels(students);
+    }
+    public List<StudentModel> getAllStudentByNameAndFatherName(String name, String fatherName) {
+        List<Student> students = studentService.getAllStudentByNameAndFatherName(name, fatherName);
+        return getStudentModels(students);
+    }
+
+    public List<StudentModel> getAllStudentByCity(String city) {
+        List<Student> students = studentService.getAllStudentByCity(city);
+        return getStudentModels(students);
+    }
+
+    public List<StudentModel> getAllStudentByDistrict(String district) {
+        List<Student> students =studentService.getAllStudentByDistrict(district);
+        return getStudentModels(students);
+    }
+
+    private List<StudentModel> getStudentModels(List<Student> students) {
+        List<StudentModel>studentModels = new ArrayList<>();
+        for (Student student : students) {
             studentModels.add(studentTransformer.toModel(student));
         }
         return studentModels;
     }
 }
+

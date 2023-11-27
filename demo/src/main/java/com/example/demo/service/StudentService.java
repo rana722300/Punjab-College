@@ -24,4 +24,15 @@ public class StudentService {
     public List<Student> getStudentByName(String name) {
         return studentRepository.getAllByHuman_Name(name);
     }
+    public List<Student>getAllStudentByNameAndFatherName(String name, String fatherName){
+        return studentRepository.getAllByHuman_NameAndHuman_FatherName(name,fatherName);
+    }
+
+    public List<Student> getAllStudentByCity(String city) {
+        return studentRepository.getAllByHuman_Address_City(city);
+    }
+
+    public List<Student> getAllStudentByDistrict(String district) {
+        return studentRepository.getAllByHuman_Address_district(district);
+    }
 }

@@ -6,6 +6,7 @@ import com.example.demo.model.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,20 @@ public class StudentController {
     @GetMapping("/name")
     public List<StudentModel> getStudentByName(@RequestParam String name) {
         return studentHandler.getStudentByName(name);
+    }
+    @GetMapping("/records")
+    public List<StudentModel>getAllStudentByNameAndFatherName
+            (@RequestParam String name,@RequestParam String fatherName){
+        return studentHandler.getAllStudentByNameAndFatherName(name,fatherName);
+       
+    }
+    @GetMapping("/city")
+    public List<StudentModel>getAllStudentByCity(@RequestParam String city){
+        return studentHandler.getAllStudentByCity(city);
+    }
+    @GetMapping("/district")
+    public List<StudentModel>getAllStudentByDistrict(@RequestParam String district){
+        return studentHandler.getAllStudentByDistrict(district);
     }
 
 }

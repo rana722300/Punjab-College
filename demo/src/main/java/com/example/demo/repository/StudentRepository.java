@@ -10,4 +10,10 @@ import java.util.UUID;
 @Repository
 public interface StudentRepository extends MongoRepository<Student, UUID> {
     List<Student> getAllByHuman_Name(String name);
+
+    List<Student> getAllByHuman_NameAndHuman_FatherName(String name, String fatherName);
+
+    List<Student> getAllByHuman_Address_City(String city);
+
+    List<Student> getAllByHuman_Address_district(String district);
 }
