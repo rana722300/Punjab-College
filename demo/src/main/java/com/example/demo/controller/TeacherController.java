@@ -5,6 +5,8 @@ import com.example.demo.model.TeacherModal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
@@ -20,4 +22,16 @@ public class TeacherController {
     public String createNewRecord(@RequestBody TeacherModal teacherModal){
         return teacherHandler.createNewTeacher(teacherModal);
     }
+
+    @GetMapping
+    public List<TeacherModal> getAllTeacher(){
+        return teacherHandler.getAllTeacher();
+    }
+
+    @GetMapping("/name/fatherName")
+    public  List<TeacherModal> getAllTeacherByNameAndFatherName
+            (@RequestParam String name, @RequestParam String fatherName){
+        return teacherHandler.findAllTeacherByNameAndFatherName(name,fatherName);
+    }
+
 }

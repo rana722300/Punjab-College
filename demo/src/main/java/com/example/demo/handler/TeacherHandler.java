@@ -6,6 +6,8 @@ import com.example.demo.service.TeacherService;
 import com.example.demo.transformer.TeacherTransformer;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -27,5 +29,23 @@ public class TeacherHandler {
             return "Teacher Created Successfully.";
         }
         return "Please enter unique cnic.";
+    }
+
+    public List<TeacherModal> getAllTeacher() {
+        List<Teacher> teachers = teacherService.getAllTeacher();
+        List<TeacherModal> teacherModals = new ArrayList<>();
+        for(Teacher teacher : teachers){
+            teacherModals.add(teacherTransformer.toModal(teacher));
+        }
+        return teacherModals;
+    }
+
+    public List<TeacherModal> findAllTeacherByNameAndFatherName(String name, String fatherName) {
+        List<Teacher> teachers =teacherService.findAllTeacherByNameAndFatherName(name,fatherName);
+        List<TeacherModal> teacherModals = new ArrayList<>();
+        for (Teacher teacher: teachers){
+            teacherModals.add(teacherTransformer.toModal(teacher));
+        }
+        return teacherModals;
     }
 }
