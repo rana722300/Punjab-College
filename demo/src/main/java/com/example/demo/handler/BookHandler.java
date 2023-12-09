@@ -21,7 +21,7 @@ public class BookHandler {
     }
 
     public String createNewRecord(String name) {
-        Book book = new Book(UUID.randomUUID(), name);
+        Book book = Book.builder().id(UUID.randomUUID()).name(name).build();
         return bookService.createNewRecord(book);
     }
 

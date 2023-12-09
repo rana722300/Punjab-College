@@ -9,19 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class StudentTransformer {
     public StudentModel toModel(Student entity) {
-        if(entity == null){
+        if (entity == null) {
             return null;
-        }else{
-            return new StudentModel(entity.getId(),
-                    entity.getFees(),
-                    new HumanModel(entity.getHuman().getName(),
-                            entity.getHuman().getFatherName(),
-                            entity.getHuman().getCnic(),
-                            entity.getHuman().getAge(),
-                            new AddressModel(entity.getHuman().getAddress().getHouseNumber(),
-                                    entity.getHuman().getAddress().getStreetNumber(),
-                                    entity.getHuman().getAddress().getCity(),
-                                    entity.getHuman().getAddress().getDistrict())));
+        } else {
+            return StudentModel.builder().id(entity.getId()).fees(entity.getFees()).humanModel(HumanModel.builder().name(entity.getHuman().getName()).fatherName(entity.getHuman().getFatherName()).age(entity.getHuman().getAge()).cnic(entity.getHuman().getCnic()).addressModel(AddressModel.builder().city(entity.getHuman().getAddress().getCity()).district(entity.getHuman().getAddress().getDistrict()).houseNumber(entity.getHuman().getAddress().getHouseNumber()).streetNumber(entity.getHuman().getAddress().getStreetNumber()).build()).build()).build();
         }
     }
 }

@@ -26,4 +26,9 @@ public class ClassLevelController {
     public List<ClassLevelModel> getAll(){
         return classLevelHandler.getAll();
     }
+    @PostMapping("/create")
+    public void createClass(@RequestBody List<String> classNames){
+        classLevelHandler.createClass(classNames);
+    }
 }
+

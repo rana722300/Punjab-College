@@ -7,16 +7,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookTransformer {
 
-    public Book toEntity(BookModel model){
-        if(model != null){
-            return new Book(model.getId(), model.getName());
+    public Book toEntity(BookModel model) {
+        if (model != null) {
+            return Book.builder().id(model.getId())
+                    .name(model.getName())
+                    .build();
         }
         return null;
     }
 
-    public BookModel toModel(Book entity){
-        if(entity != null){
-            return new BookModel(entity.getId(), entity.getName());
+    public BookModel toModel(Book entity) {
+        if (entity != null) {
+            return BookModel.builder().id(entity.getId())
+                    .name(entity.getName())
+                    .build();
         }
         return null;
     }

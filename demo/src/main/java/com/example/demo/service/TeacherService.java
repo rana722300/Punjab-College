@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Book;
 import com.example.demo.domain.Teacher;
 import com.example.demo.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -14,6 +13,7 @@ public class TeacherService {
     public TeacherService(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;
     }
+
     public void createNewRecord(Teacher teacher) {
         teacherRepository.save(teacher);
     }
@@ -27,6 +27,6 @@ public class TeacherService {
     }
 
     public List<Teacher> findAllTeacherByNameAndFatherName(String name, String fatherName) {
-        return teacherRepository.findAllByHuman_NameAndHuman_FatherName(name,fatherName);
+        return teacherRepository.findAllByHuman_NameAndHuman_FatherName(name, fatherName);
     }
 }

@@ -17,7 +17,7 @@ public class BookService {
 
     public String createNewRecord(Book book) {
         boolean existBook = bookRepository.existsByName(book.getName());
-        if(!existBook){
+        if (!existBook) {
             bookRepository.save(book);
             return "Book Created Successfully.";
         }
