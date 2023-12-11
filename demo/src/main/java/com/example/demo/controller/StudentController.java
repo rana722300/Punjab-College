@@ -20,9 +20,8 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public String createStudent(@RequestBody Student student) {
-        studentHandler.createStudent(student);
-        return "Student Created Successfully. \nStudent Fees : " + student.getFees() + "\nStudent Name : " + student.getHuman().getName();
+    public String createStudent(@RequestBody StudentModel studentModel) {
+        return studentHandler.createStudent(studentModel);
     }
 
     @GetMapping("/name")

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class StudentHandler {
@@ -20,8 +21,10 @@ public class StudentHandler {
         this.studentTransformer = studentTransformer;
     }
 
-    public void createStudent(Student student) {
-        studentService.createStudent(student);
+    public String createStudent(StudentModel studentModel) {
+        studentModel.setId(UUID.randomUUID());
+        Student student = studentTransformer.toEntity(studentModel);
+        return studentService.createStudent(student);
     }
 
     public List<StudentModel> getStudentByName(String name) {

@@ -8,8 +8,8 @@ import java.util.UUID;
 @Data
 @Builder
 public class StudentModel {
-    private final UUID id;
-    private final double fees;
-    private final HumanModel humanModel;
-
+    private UUID id;
+    private double fees;
+    private HumanModel humanModel;
+    private ClassLevelModel classLevelModel;
 }

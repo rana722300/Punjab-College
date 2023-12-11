@@ -16,4 +16,6 @@ public interface StudentRepository extends MongoRepository<Student, UUID> {
     List<Student> getAllByHuman_Address_City(String city);
 
     List<Student> getAllByHuman_Address_district(String district);
+
+    boolean existsByHuman_Cnic(String cnic);
 }

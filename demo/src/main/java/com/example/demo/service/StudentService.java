@@ -15,9 +15,14 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public void createStudent(Student student) {
-        student.setId(UUID.randomUUID());
-        studentRepository.save(student);
+    public String createStudent(Student student) {
+        boolean studentExist = studentRepository.existsByHuman_Cnic(student.getHuman().getCnic());
+        if(studentExist){
+            studentRepository.save(student);
+            return "Student Created Successfully.";
+        }
+        return "Student Al-ready Exist.";
+
     }
 
     public List<Student> getStudentByName(String name) {
