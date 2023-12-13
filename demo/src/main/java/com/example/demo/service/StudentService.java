@@ -17,7 +17,7 @@ public class StudentService {
 
     public String createStudent(Student student) {
         boolean studentExist = studentRepository.existsByHuman_Cnic(student.getHuman().getCnic());
-        if(studentExist){
+        if(!studentExist){
             studentRepository.save(student);
             return "Student Created Successfully.";
         }
