@@ -3,11 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.domain.Student;
 import com.example.demo.handler.StudentHandler;
 import com.example.demo.model.StudentModel;
+import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/student")
@@ -42,5 +44,8 @@ public class StudentController {
     public List<StudentModel>getAllStudentByDistrict(@RequestParam String district){
         return studentHandler.getAllStudentByDistrict(district);
     }
+    @GetMapping("/count")
+    public long getTotalStudentCount(){
+        return studentHandler.getTotalStudentCount();}
+    }
 
-}

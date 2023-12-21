@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -51,7 +52,13 @@ public class StudentHandler {
         for (Student student : students) {
             studentModels.add(studentTransformer.toModel(student));
         }
-        return studentModels;
+            return studentModels;
     }
+
+    public long getTotalStudentCount() {
+        return studentService.getTotalStudentCount();
+    }
+
 }
+
 

@@ -1,10 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.ClassLevel;
 import com.example.demo.domain.Student;
 import com.example.demo.repository.StudentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -40,4 +44,8 @@ public class StudentService {
     public List<Student> getAllStudentByDistrict(String district) {
         return studentRepository.getAllByHuman_Address_district(district);
     }
+    public long getTotalStudentCount(){
+        return studentRepository.count();
+    }
+
 }
