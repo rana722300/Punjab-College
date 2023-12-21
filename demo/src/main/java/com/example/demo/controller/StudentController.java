@@ -46,6 +46,12 @@ public class StudentController {
     }
     @GetMapping("/count")
     public long getTotalStudentCount(){
-        return studentHandler.getTotalStudentCount();}
+        return studentHandler.getTotalStudentCount();
     }
+
+    @GetMapping("/book/{name}")
+    public List<StudentModel> getTotalStudentInSpecificBook(@PathVariable String name){
+        return studentHandler.getTotalStudentInSpecificBook(name);
+    }
+}
 

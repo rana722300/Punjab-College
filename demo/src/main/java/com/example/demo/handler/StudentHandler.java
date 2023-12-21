@@ -59,6 +59,14 @@ public class StudentHandler {
         return studentService.getTotalStudentCount();
     }
 
+    public List<StudentModel> getTotalStudentInSpecificBook(String name) {
+        List<Student> students = studentService.getTotalStudentInSpecificBook(name);
+        List<StudentModel> studentModels = new ArrayList<>();
+        for(Student student : students){
+            studentModels.add(studentTransformer.toModel(student));
+        }
+        return studentModels;
+    }
 }
 
 

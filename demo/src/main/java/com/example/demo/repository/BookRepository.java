@@ -9,4 +9,6 @@ import java.util.UUID;
 @Repository
 public interface BookRepository extends MongoRepository<Book, UUID> {
     boolean existsByName(String name);
+
+    Book findByName(String name);
 }

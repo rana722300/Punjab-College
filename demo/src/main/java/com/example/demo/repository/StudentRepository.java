@@ -20,4 +20,6 @@ public interface StudentRepository extends MongoRepository<Student, UUID> {
     boolean existsByHuman_Cnic(String cnic);
 
     long countByClassLevel_Id(UUID id);
+
+    List<Student> getAllByClassLevelIn(List<UUID> ids);
 }

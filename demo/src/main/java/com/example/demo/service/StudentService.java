@@ -1,22 +1,27 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.Book;
 import com.example.demo.domain.ClassLevel;
 import com.example.demo.domain.Student;
+import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.ClassLevelRepository;
 import com.example.demo.repository.StudentRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
+    private final BookRepository bookRepository;
+    private final ClassLevelRepository classLevelRepository;
 
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, BookRepository bookRepository, ClassLevelRepository classLevelRepository) {
         this.studentRepository = studentRepository;
+        this.bookRepository = bookRepository;
+        this.classLevelRepository = classLevelRepository;
     }
 
     public String createStudent(Student student) {
@@ -48,4 +53,13 @@ public class StudentService {
         return studentRepository.count();
     }
 
+    public List<Student> getTotalStudentInSpecificBook(String name) {
+        Book book = bookRepository.findByName(name);
+        List<ClassLevel> classLevels = classLevelRepository.findByBookList(book.getId());
+        List<UUID> classLevelIds = classLevels.stream()
+                .map(ClassLevel::getId)
+                .collect(Collectors.toList());
+
+        return studentRepository.getAllByClassLevelIn(classLevelIds);
+    }
 }
