@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Student;
 import com.example.demo.handler.StudentHandler;
+import com.example.demo.model.StudentCount;
 import com.example.demo.model.StudentModel;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,10 @@ public class StudentController {
     @GetMapping("/book/{name}")
     public List<StudentModel> getTotalStudentInSpecificBook(@PathVariable String name){
         return studentHandler.getTotalStudentInSpecificBook(name);
+    }
+    @GetMapping("/count-by-class")
+    public List<StudentCount> countStudentsInClass(){
+        return studentHandler.countStudentsInClass();
     }
 }
 

@@ -3,11 +3,14 @@ package com.example.demo.service;
 import com.example.demo.domain.Book;
 import com.example.demo.domain.ClassLevel;
 import com.example.demo.domain.Student;
+import com.example.demo.model.StudentCount;
+import com.example.demo.model.StudentModel;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.ClassLevelRepository;
 import com.example.demo.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -61,5 +64,18 @@ public class StudentService {
                 .collect(Collectors.toList());
 
         return studentRepository.getAllByClassLevelIn(classLevelIds);
+    }
+
+    public List<StudentCount> countStudentsInClass() {
+        List<ClassLevel> classLevels = classLevelRepository.findAll();
+        List<StudentCount> studentCounts = new ArrayList<>();
+        for (ClassLevel classLevel : classLevels){
+            long totalCount = studentRepository.countByClassLevel_Id(classLevel.getId());
+            studentCounts.add(StudentCount.builder()
+                            .name(classLevel.getName())
+                            .count(totalCount)
+                    .build());
+        }
+        return studentCounts;
     }
 }

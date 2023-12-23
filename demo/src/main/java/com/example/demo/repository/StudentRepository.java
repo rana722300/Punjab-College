@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.domain.ClassLevel;
 import com.example.demo.domain.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,6 @@ public interface StudentRepository extends MongoRepository<Student, UUID> {
     long countByClassLevel_Id(UUID id);
 
     List<Student> getAllByClassLevelIn(List<UUID> ids);
+
+
 }

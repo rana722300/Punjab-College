@@ -1,6 +1,7 @@
 package com.example.demo.handler;
 
 import com.example.demo.domain.Student;
+import com.example.demo.model.StudentCount;
 import com.example.demo.model.StudentModel;
 import com.example.demo.service.StudentService;
 import com.example.demo.transformer.StudentTransformer;
@@ -66,6 +67,10 @@ public class StudentHandler {
             studentModels.add(studentTransformer.toModel(student));
         }
         return studentModels;
+    }
+
+    public List<StudentCount> countStudentsInClass() {
+        return studentService.countStudentsInClass();
     }
 }
 
