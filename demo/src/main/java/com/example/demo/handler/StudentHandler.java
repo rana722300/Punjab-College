@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -33,27 +32,29 @@ public class StudentHandler {
         List<Student> students = studentService.getStudentByName(name);
         return getStudentModels(students);
     }
+
     public List<StudentModel> getAllStudentByNameAndFatherName(String name, String fatherName) {
         List<Student> students = studentService.getAllStudentByNameAndFatherName(name, fatherName);
         return getStudentModels(students);
     }
 
-    public List<StudentModel> getAllStudentByCity(String city) {
-        List<Student> students = studentService.getAllStudentByCity(city);
-        return getStudentModels(students);
+    public List<Student> getAllStudentByCity(String city) {
+//        List<Student> students =
+        return studentService.getAllStudentByCity(city);
+//        return getStudentModels(students);
     }
 
     public List<StudentModel> getAllStudentByDistrict(String district) {
-        List<Student> students =studentService.getAllStudentByDistrict(district);
+        List<Student> students = studentService.getAllStudentByDistrict(district);
         return getStudentModels(students);
     }
 
     private List<StudentModel> getStudentModels(List<Student> students) {
-        List<StudentModel>studentModels = new ArrayList<>();
+        List<StudentModel> studentModels = new ArrayList<>();
         for (Student student : students) {
             studentModels.add(studentTransformer.toModel(student));
         }
-            return studentModels;
+        return studentModels;
     }
 
     public long getTotalStudentCount() {
@@ -63,7 +64,7 @@ public class StudentHandler {
     public List<StudentModel> getTotalStudentInSpecificBook(String name) {
         List<Student> students = studentService.getTotalStudentInSpecificBook(name);
         List<StudentModel> studentModels = new ArrayList<>();
-        for(Student student : students){
+        for (Student student : students) {
             studentModels.add(studentTransformer.toModel(student));
         }
         return studentModels;
@@ -71,6 +72,18 @@ public class StudentHandler {
 
     public List<StudentCount> countStudentsInClass() {
         return studentService.countStudentsInClass();
+    }
+
+    public List<Student> getAllStudentByFatherName(String fatherName) {
+        return studentService.getAllStudentByFatherName(fatherName);
+    }
+
+    public List<Student> getAllStudentByHouseNumber(String houseNumber) {
+        return studentService.getAllStudentByHouseNumber(houseNumber);
+    }
+
+    public List<Student> getAllStudentByFees(double fees) {
+        return studentService.getAllStudentByFees(fees);
     }
 }
 

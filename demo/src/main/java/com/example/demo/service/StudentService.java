@@ -29,7 +29,7 @@ public class StudentService {
 
     public String createStudent(Student student) {
         boolean studentExist = studentRepository.existsByHuman_Cnic(student.getHuman().getCnic());
-        if(!studentExist){
+        if (!studentExist) {
             studentRepository.save(student);
             return "Student Created Successfully.";
         }
@@ -52,7 +52,8 @@ public class StudentService {
     public List<Student> getAllStudentByDistrict(String district) {
         return studentRepository.getAllByHuman_Address_district(district);
     }
-    public long getTotalStudentCount(){
+
+    public long getTotalStudentCount() {
         return studentRepository.count();
     }
 
@@ -69,13 +70,25 @@ public class StudentService {
     public List<StudentCount> countStudentsInClass() {
         List<ClassLevel> classLevels = classLevelRepository.findAll();
         List<StudentCount> studentCounts = new ArrayList<>();
-        for (ClassLevel classLevel : classLevels){
+        for (ClassLevel classLevel : classLevels) {
             long totalCount = studentRepository.countByClassLevel_Id(classLevel.getId());
             studentCounts.add(StudentCount.builder()
-                            .name(classLevel.getName())
-                            .count(totalCount)
+                    .name(classLevel.getName())
+                    .count(totalCount)
                     .build());
         }
         return studentCounts;
+    }
+
+    public List<Student> getAllStudentByFatherName(String fatherName) {
+        return studentRepository.getAllByHuman_FatherName(fatherName);
+    }
+
+    public List<Student> getAllStudentByHouseNumber(String houseNumber) {
+        return studentRepository.getAllByHuman_Address_HouseNumber(houseNumber);
+    }
+
+    public List<Student> getAllStudentByFees(double fees) {
+        return studentRepository.getAllByFees(fees);
     }
 }
