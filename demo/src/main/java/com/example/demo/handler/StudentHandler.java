@@ -3,8 +3,10 @@ package com.example.demo.handler;
 import com.example.demo.domain.Student;
 import com.example.demo.model.StudentCount;
 import com.example.demo.model.StudentModel;
+import com.example.demo.model.StudentSearchCriteria;
 import com.example.demo.service.StudentService;
 import com.example.demo.transformer.StudentTransformer;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -84,6 +86,10 @@ public class StudentHandler {
 
     public List<Student> getAllStudentByFees(double fees) {
         return studentService.getAllStudentByFees(fees);
+    }
+
+    public Page<StudentModel> getCustomStudent(StudentSearchCriteria studentSearchCriteria) {
+        return studentService.getCustomStudent(studentSearchCriteria).map(StudentTransformer::toModel);
     }
 }
 

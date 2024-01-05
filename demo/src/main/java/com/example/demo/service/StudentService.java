@@ -4,10 +4,12 @@ import com.example.demo.domain.Book;
 import com.example.demo.domain.ClassLevel;
 import com.example.demo.domain.Student;
 import com.example.demo.model.StudentCount;
-import com.example.demo.model.StudentModel;
+import com.example.demo.model.StudentSearchCriteria;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.ClassLevelRepository;
 import com.example.demo.repository.StudentRepository;
+import com.example.demo.repository.StudentRepositoryImpl;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,11 +22,13 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final BookRepository bookRepository;
     private final ClassLevelRepository classLevelRepository;
+    private final StudentRepositoryImpl studentRepositoryImpl;
 
-    public StudentService(StudentRepository studentRepository, BookRepository bookRepository, ClassLevelRepository classLevelRepository) {
+    public StudentService(StudentRepository studentRepository, BookRepository bookRepository, ClassLevelRepository classLevelRepository, StudentRepositoryImpl studentRepositoryImpl) {
         this.studentRepository = studentRepository;
         this.bookRepository = bookRepository;
         this.classLevelRepository = classLevelRepository;
+        this.studentRepositoryImpl = studentRepositoryImpl;
     }
 
     public String createStudent(Student student) {
@@ -90,5 +94,9 @@ public class StudentService {
 
     public List<Student> getAllStudentByFees(double fees) {
         return studentRepository.getAllByFees(fees);
+    }
+
+    public Page<Student> getCustomStudent(StudentSearchCriteria studentSearchCriteria) {
+        return studentRepositoryImpl.getCustomStudent(studentSearchCriteria);
     }
 }

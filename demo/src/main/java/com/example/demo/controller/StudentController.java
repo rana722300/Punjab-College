@@ -4,7 +4,9 @@ import com.example.demo.domain.Student;
 import com.example.demo.handler.StudentHandler;
 import com.example.demo.model.StudentCount;
 import com.example.demo.model.StudentModel;
+import com.example.demo.model.StudentSearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -72,6 +74,11 @@ public class StudentController {
       @GetMapping("/fees")
     public List<Student> getAllStudentByFees(@RequestParam double fees){
       return studentHandler.getAllStudentByFees(fees);
+    }
+
+    @GetMapping("/custom/fees")
+    public Page<StudentModel> getCustomStudent(@RequestBody StudentSearchCriteria studentSearchCriteria){
+        return studentHandler.getCustomStudent(studentSearchCriteria);
     }
 }
 

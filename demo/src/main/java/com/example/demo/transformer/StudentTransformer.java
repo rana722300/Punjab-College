@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StudentTransformer {
 
-    public StudentModel toModel(Student entity) {
+    public static StudentModel toModel(Student entity) {
         if (entity == null) {
             return null;
         } else {
