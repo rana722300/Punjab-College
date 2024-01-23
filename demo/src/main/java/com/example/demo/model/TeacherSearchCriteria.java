@@ -1,6 +1,11 @@
 package com.example.demo.model;
 
-public class TeacherSeachCitetria {
+import lombok.Getter;
+import org.springframework.stereotype.Component;
+
+@Component
+@Getter
+public class TeacherSearchCriteria {
     private int salary;
     private int pageSize;
     private int pageNumber;

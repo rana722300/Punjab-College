@@ -17,7 +17,7 @@ public class TeacherTransformer {
         return null;
     }
 
-    public TeacherModal toModal(Teacher entity) {
+    public static TeacherModal toModal(Teacher entity) {
         if (entity != null) {
             return TeacherModal.builder().humanModel(HumanModel.builder().name(entity.getHuman().getName()).fatherName(entity.getHuman().getFatherName()).age(entity.getHuman().getAge()).cnic(entity.getHuman().getCnic()).addressModel(AddressModel.builder().streetNumber(entity.getHuman().getAddress().getStreetNumber()).houseNumber(entity.getHuman().getAddress().getHouseNumber()).district(entity.getHuman().getAddress().getDistrict()).city(entity.getHuman().getAddress().getCity()).build()).build()).bookList(entity.getBookList()).salary(entity.getSalary()).build();
         }

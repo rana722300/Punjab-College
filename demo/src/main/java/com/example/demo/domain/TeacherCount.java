@@ -1,2 +1,4 @@
-package com.example.demo.domain;public class TeacherCount {
+package com.example.demo.domain;
+
+public class TeacherCount {
 }

@@ -2,8 +2,10 @@ package com.example.demo.handler;
 
 import com.example.demo.domain.Teacher;
 import com.example.demo.model.TeacherModal;
+import com.example.demo.model.TeacherSearchCriteria;
 import com.example.demo.service.TeacherService;
 import com.example.demo.transformer.TeacherTransformer;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.UUID;
 
 @Component
 public class TeacherHandler {
-    private final TeacherService teacherService;
+    private  final TeacherService teacherService;
     private final TeacherTransformer teacherTransformer;
 
     public TeacherHandler(TeacherService teacherService, TeacherTransformer teacherTransformer) {
@@ -48,4 +50,8 @@ public class TeacherHandler {
         }
         return teacherModals;
     }
+    public Page<TeacherModal> getCustomTeacher(TeacherSearchCriteria teacherSearchCriteria) {
+      return teacherService.getCustomTeacher(teacherSearchCriteria).map(TeacherTransformer::toModal);
+    }
+
 }
